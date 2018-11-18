@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 var {mongoose} = require('./db/mongoose.js');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
+var {authenticate} = require('./middleware/authenticate');
 const{ObjectID} = require('mongodb');
 
 var app = express();
@@ -115,6 +116,11 @@ app.post('/users', (req, res) => {
     }).catch((token) => {
         res.status(400).send(e);
     })
+});
+
+//Using the middleware authenticate!
+app.get('/users/me', authenticate, (req, res) => {
+    res.send(req.user);
 });
 
 app.listen(port, () => {
