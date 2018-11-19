@@ -217,7 +217,7 @@ describe('POST /users' , () => {
             .end(done);
     });
 
-    /*
+    
     it('should not create user if email in use', (done) => {
         request(app)
             .post('/users')
@@ -227,6 +227,6 @@ describe('POST /users' , () => {
             })
             .expect(400)
             .end(done);
-    }); */
+    });
 
 });
