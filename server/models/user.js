@@ -57,6 +57,18 @@ UserSchema.methods.generateAuthToken = function () {
     });
 };
 
+UserSchema.methods.removeToken = function (token) {
+    var user = this;
+
+    return user.update({
+        $pull: { //Mongoose operator for removing stuff from an array
+            tokens: {
+                token: token
+            }
+        }
+    });
+};
+
 //Model method
 UserSchema.statics.findByToken = function (token) {
     //Uses the model directly
